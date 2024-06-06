@@ -1,9 +1,9 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'modelos/user.dart';
+import 'modelos/pokemon.dart';
 
 class DatosPage extends StatelessWidget {
-  final List<User> users;
+  final List<Pokemon> pokemons;
 
   const DatosPage({
     Key? key,
@@ -30,14 +30,14 @@ class DatosPage extends StatelessWidget {
           crossAxisSpacing: 8.0,
           mainAxisSpacing: 8.0,
         ),
-        itemCount: users.length,
+        itemCount: pokemons.length,
         itemBuilder: (context, index) {
-          final user = users[index];
+          final pokemon = pokemons[index];
           final gradientColors = _generateUniqueGradient();
           return GestureDetector(
             onTap: () {
               final Color appBarColor = gradientColors[0];
-              _showUserDetails(context, user, appBarColor);
+              _showUserDetails(context, pokemon, appBarColor);
             },
             child: AnimatedContainer(
               duration: Duration(milliseconds: 300),
@@ -62,9 +62,9 @@ class DatosPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Hero(
-                    tag: 'user_avatar_$index',
+                    tag: 'pokemon_nombre$index',
                     child: Image.network(
-                      user.avatar,
+                      pokemon.nombre,
                       width: 80.0,
                       height: 80.0,
                       fit: BoxFit.cover,
@@ -72,7 +72,7 @@ class DatosPage extends StatelessWidget {
                   ),
                   SizedBox(height: 8.0),
                   Text(
-                    '${user.firstName} ${user.lastName}',
+                    '${pokemon.nombre} ${pokemon.tipo}',
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
@@ -81,7 +81,9 @@ class DatosPage extends StatelessWidget {
                   ),
                   SizedBox(height: 4.0),
                   Text(
-                    user.email,
+                    pokemon.ataque,
+                    pokemon.defensa,
+                    pokemon.foto,
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.grey[400]),
                   ),
@@ -94,9 +96,9 @@ class DatosPage extends StatelessWidget {
     );
   }
 
-  void _showUserDetails(BuildContext context, User user, Color appBarColor) {
+  void _showUserDetails(BuildContext context, Pokemon pokemon, Color appBarColor) {
     Navigator.of(context).push(MaterialPageRoute(
-      builder: (_) => UserDetailsPage(user: user, appBarColor: appBarColor),
+      builder: (_) => UserDetailsPage(pokemon: pokemon, appBarColor: appBarColor),
     ));
   }
 
@@ -109,12 +111,12 @@ class DatosPage extends StatelessWidget {
 }
 
 class UserDetailsPage extends StatelessWidget {
-  final User user;
+  final Pokemon pokemon;
   final Color appBarColor;
 
   const UserDetailsPage({
     Key? key,
-    required this.user,
+    required this.pokemon,
     required this.appBarColor,
   }) : super(key: key);
 
@@ -123,7 +125,7 @@ class UserDetailsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: appBarColor,
-        title: Text('Detalles de ${user.firstName} ${user.lastName}'),
+        title: Text('Detalles de ${pokemon.nombre} ${pokemon.tipo}'),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -141,9 +143,9 @@ class UserDetailsPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Hero(
-                tag: 'user_avatar_${user.id}',
+                tag: 'pokemon_nombre${pokemon.id}',
                 child: Image.network(
-                  user.avatar,
+                  pokemon.foto,
                   width: 120.0,
                   height: 120.0,
                   fit: BoxFit.cover,
@@ -151,12 +153,12 @@ class UserDetailsPage extends StatelessWidget {
               ),
               SizedBox(height: 16.0),
               Text(
-                '${user.firstName} ${user.lastName}',
+                '${pokemon.nombre} ${pokemon.tipo}',
                 style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 8.0),
               Text(
-                user.email,
+                pokemon.nombre,
                 style: TextStyle(fontSize: 16.0, color: Colors.grey),
               ),
               SizedBox(height: 16.0),
