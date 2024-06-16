@@ -13,7 +13,7 @@ class Pokemon{
   Pokemon({
     required this.id,
     required this.nombre,
-    required this.tipo
+    required this.tipo,
     required this.ps,
     required this.ataque,
     required this.defensa,
@@ -21,7 +21,7 @@ class Pokemon{
   });
 
   factory Pokemon.fromJson(Map<String, dynamic> json) {
-    return User(
+    return Pokemon(
       id: json['id'],
       nombre: json['nombre'],
       tipo: json['tipo'],

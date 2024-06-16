@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 144, 144, 144),
        title: Text(
-      'Superheroes',
+      'Pokemons',
       style: TextStyle(color: Colors.black),),),
         
       body: FutureBuilder( 
@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
             if (snapshot.hasError) {
               return ErrorPage();
             } else if (snapshot.hasData) {
-              return DatosPage(users: snapshot.data as List<Pokemon>,);
+              return DatosPage(pokemons: snapshot.data as List<Pokemon>,);
             }
           }
           return CargaPage();

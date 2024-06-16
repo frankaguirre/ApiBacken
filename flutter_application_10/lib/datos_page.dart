@@ -7,7 +7,7 @@ class DatosPage extends StatelessWidget {
 
   const DatosPage({
     Key? key,
-    required this.users,
+    required this.pokemons,
   }) : super(key: key);
 
   @override
@@ -64,7 +64,7 @@ class DatosPage extends StatelessWidget {
                   Hero(
                     tag: 'pokemon_nombre$index',
                     child: Image.network(
-                      pokemon.nombre,
+                    pokemon.nombre,
                       width: 80.0,
                       height: 80.0,
                       fit: BoxFit.cover,
@@ -82,8 +82,6 @@ class DatosPage extends StatelessWidget {
                   SizedBox(height: 4.0),
                   Text(
                     pokemon.ataque,
-                    pokemon.defensa,
-                    pokemon.foto,
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.grey[400]),
                   ),
