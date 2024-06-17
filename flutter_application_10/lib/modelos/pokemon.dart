@@ -33,7 +33,7 @@ class Pokemon{
   }
 }
 
-List<Pokemon> userFromJson(String str) {
+List<Pokemon> pokemonFromJson(String str) {
   final jsonData = json.decode(str);
   return List<Pokemon>.from(jsonData.map((item) => Pokemon.fromJson(item)));
 }
