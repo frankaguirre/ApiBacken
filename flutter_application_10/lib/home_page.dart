@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
             if (snapshot.hasError) {
               return ErrorPage();
             } else if (snapshot.hasData) {
-              return DatosPage(pokemons: snapshot.data as List<Pokemon>,);
+              return DatosPage(pokemons: snapshot.data as List<Pokemon>);
             }
           }
           return CargaPage();
@@ -44,7 +44,7 @@ class HomePage extends StatelessWidget {
     if (response.statusCode == 200){
       final info = jsonDecode(response.body);
       final data = info["data"];
-      return userFromJson(jsonEncode(data));
+      return pokemonFromJson(jsonEncode(data));
     }else{
       throw 'Error';
     }

@@ -9,7 +9,7 @@ class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
      return MaterialApp(
-      title: 'Pokemones',
+      title: 'Pokemons',
       debugShowCheckedModeBanner: false,
       home: HomePage(),
      );
