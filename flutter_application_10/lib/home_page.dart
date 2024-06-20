@@ -20,8 +20,11 @@ class _HomePageState extends State<HomePage> {
     _pokemonListFuture = fetchPokemons();
   }
 
+  
+
   Future<List<PokemonElement>> fetchPokemons() async {
-    final response = await http.get(Uri.parse('82ed-179-19-180-98.ngrok-free.app/pokemons'));
+    final url = Uri.parse('http://localhost:3000/pokemons');
+    final response = await http.get(url);
 
     if (response.statusCode == 200) {
       List<dynamic> parsedJson = jsonDecode(response.body);
@@ -47,17 +50,7 @@ class _HomePageState extends State<HomePage> {
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
-            return ListView.builder(
-              itemCount: snapshot.data!.length,
-              itemBuilder: (context, index) {
-                final pokemon = snapshot.data![index];
-                return ListTile(
-                  leading: Image.network(pokemon.foto),
-                  title: Text(pokemon.nombre),
-                  subtitle: Text('Tipo: ${pokemon.tipo} - PS: ${pokemon.ps}'),
-                );
-              },
-            );
+            return DatosPage(pokemons: snapshot.data!);
           } else {
             return Center(child: Text('No hay datos disponibles'));
           }
@@ -66,3 +59,4 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+

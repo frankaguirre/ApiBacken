@@ -32,18 +32,11 @@ class PokemonElement {
   }
 
   List<PokemonElement> parsePokemons(String responseBody) {
-  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
-  return parsed.map<PokemonElement>((json) => PokemonElement.fromJson(json)).toList();
- }
+    final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
+    return parsed.map<PokemonElement>((json) => PokemonElement.fromJson(json)).toList();
+  }
 
 }
-
-
-List<PokemonElement> parsePokemons(String responseBody) {
-  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
-  return parsed.map<PokemonElement>((json) => PokemonElement.fromJson(json)).toList();
-}
-
 
 
 

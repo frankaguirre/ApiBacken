@@ -9,21 +9,50 @@ class DatosPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Lista de Pokémons'),
-      ),
       body: ListView.builder(
         itemCount: pokemons.length,
         itemBuilder: (context, index) {
           final pokemon = pokemons[index];
           return ListTile(
-            leading: Image.network(pokemon.foto),
+            leading: CircleAvatar(
+              backgroundImage: NetworkImage(pokemon.foto),
+            ),
             title: Text(pokemon.nombre),
-            subtitle: Text('${pokemon.tipo} - PS: ${pokemon.ps}'),
+            subtitle: Text('Ataque: ${pokemon.ataque} - Defensa: ${pokemon.defensa}'),
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text(pokemon.nombre),
+                    content: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Image.network(pokemon.foto, width: 100, height: 100),
+                        SizedBox(height: 8),
+                        Text('ID: ${pokemon.id}'),
+                        Text('Tipo: ${pokemon.tipo}'),
+                        Text('PS: ${pokemon.ps}'),
+                        Text('Ataque: ${pokemon.ataque}'),
+                        Text('Defensa: ${pokemon.defensa}'),
+                      ],
+                    ),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: Text('Cerrar'),
+                      ),
+                    ],
+                  );
+                },
+              );
+            },
           );
         },
       ),
     );
   }
 }
+
 
