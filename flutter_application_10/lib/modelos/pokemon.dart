@@ -1,16 +1,15 @@
 import 'dart:convert';
 
-class Pokemon{
-  final int id;
-  final String nombre;
-  final String tipo;
-  final String ps;
-  final String ataque;
-  final String defensa;
-  final String foto;
-  
+class PokemonElement {
+  int id;
+  String nombre;
+  String tipo;
+  String ps;
+  String ataque;
+  String defensa;
+  String foto;
 
-  Pokemon({
+  PokemonElement({
     required this.id,
     required this.nombre,
     required this.tipo,
@@ -20,20 +19,35 @@ class Pokemon{
     required this.foto,
   });
 
-  factory Pokemon.fromJson(Map<String, dynamic> json) {
-    return Pokemon(
+  factory PokemonElement.fromJson(Map<String, dynamic> json) {
+    return PokemonElement(
       id: json['id'],
       nombre: json['nombre'],
       tipo: json['tipo'],
       ps: json['ps'],
       ataque: json['ataque'],
       defensa: json['defensa'],
-      foto: json['foto']
+      foto: json['foto'],
     );
   }
+
+  List<PokemonElement> parsePokemons(String responseBody) {
+  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
+  return parsed.map<PokemonElement>((json) => PokemonElement.fromJson(json)).toList();
+ }
+
 }
 
-List<Pokemon> pokemonFromJson(String str) {
-  final jsonData = json.decode(str);
-  return List<Pokemon>.from(jsonData.map((item) => Pokemon.fromJson(item)));
+
+List<PokemonElement> parsePokemons(String responseBody) {
+  final parsed = jsonDecode(responseBody).cast<Map<String, dynamic>>();
+  return parsed.map<PokemonElement>((json) => PokemonElement.fromJson(json)).toList();
 }
+
+
+
+
+
+  
+
+

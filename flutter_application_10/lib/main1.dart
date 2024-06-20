@@ -2,18 +2,21 @@ import 'package:flutter/material.dart';
 
 import 'home_page.dart';
 
-void main(){
-  runApp(Myapp());
-}
-class Myapp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-     return MaterialApp(
-      title: 'Pokemons',
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
-     );
-  }
-  
+void main() {
+  runApp(MyApp());
 }
 
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Pokemons',
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primarySwatch: Colors.red,
+        scaffoldBackgroundColor: Color.fromARGB(255, 82, 79, 79),
+      ),
+      home: HomePage(),
+    );
+  }
+}
